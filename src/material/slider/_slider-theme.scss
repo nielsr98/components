@@ -13,6 +13,18 @@
   .mat-slider-thumb-label-text {
     color: mat-color($palette, default-contrast);
   }
+
+  .mat-slider-focus-ring {
+    $opacity: 0.2;
+    $color: mat-color($palette, default, $opacity);
+    background-color: $color;
+
+    // `mat-color` uses `rgba` for the opacity which won't work with
+    // CSS variables so we need to use `opacity` as a fallback.
+    @if (type-of($color) != color) {
+      opacity: $opacity;
+    }
+  }
 }
 
 @mixin mat-slider-color($config-or-theme) {
@@ -46,18 +58,6 @@
 
   .mat-warn {
     @include _mat-slider-inner-content-theme($warn);
-  }
-
-  .mat-slider-focus-ring {
-    $opacity: 0.2;
-    $color: mat-color($accent, default, $opacity);
-    background-color: $color;
-
-    // `mat-color` uses `rgba` for the opacity which won't work with
-    // CSS variables so we need to use `opacity` as a fallback.
-    @if (type-of($color) != color) {
-      opacity: $opacity;
-    }
   }
 
   .mat-slider:hover,
@@ -175,9 +175,7 @@
   }
 }
 
-@mixin _mat-slider-density($config-or-theme) {
-  $density-scale: mat-get-density-config($config-or-theme);
-}
+@mixin _mat-slider-density($config-or-theme) {}
 
 @mixin mat-slider-theme($theme-or-color-config) {
   $theme: _mat-legacy-get-theme($theme-or-color-config);
