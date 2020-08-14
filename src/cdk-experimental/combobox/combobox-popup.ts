@@ -19,7 +19,8 @@ let nextId = 0;
   host: {
     'class': 'cdk-combobox-popup',
     '[attr.role]': 'role',
-    '[id]': 'id'
+    '[id]': 'id',
+    'tabindex': '-1'
   }
 })
 export class CdkComboboxPopup<T = unknown> implements OnInit {
