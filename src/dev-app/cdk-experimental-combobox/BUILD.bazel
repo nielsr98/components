@@ -7,9 +7,13 @@ ng_module(
     srcs = glob(["**/*.ts"]),
     assets = [
         "cdk-combobox-demo.html",
+        "cdk-combobox-demo.css"
     ],
     deps = [
         "//src/cdk-experimental/combobox",
+        "//src/cdk-experimental/listbox",
+        "//src/material/checkbox",
         "@npm//@angular/router",
+        "@npm//@angular/forms",
     ],
 )

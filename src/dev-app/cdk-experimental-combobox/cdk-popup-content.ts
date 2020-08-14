@@ -14,14 +14,14 @@ export const PANEL = new InjectionToken<CdkComboboxPanel>('CdkComboboxPanel');
 let id = 0;
 
 @Directive({
-  selector: '[panelContent]',
-  exportAs: 'panelContent',
+  selector: '[cdkPopupContent]',
+  exportAs: 'cdkPopupContent',
   host: {
     'role': 'role',
     '[id]': 'dialogId'
   }
 })
-export class PanelContent<V> implements OnInit {
+export class CdkPopupContent<V> implements OnInit {
 
   dialogId = `dialog-${id++}`;
   role = 'dialog';
