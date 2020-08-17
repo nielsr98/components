@@ -52,7 +52,7 @@ Combobox with listbox and filter input (opens on click)
 </button>
 
 <ng-template cdkComboboxPanel #countryPanel="cdkComboboxPanel">
-    <div cdkComboboxPopup [parentPanel]="countryPanel">
+    <div cdkComboboxPopup [parentPanel]="countryPanel" [firstFocus]="countryInput">
         Filter
         <input #countryInput class="demo-input" (input)="inputValue.next(countryInput.value)">
         <br>
@@ -72,6 +72,7 @@ Combobox with dialog (opens on click)
         #destinyCombobox="cdkCombobox"
         class="example-combobox"
         [cdkComboboxTriggerFor]="destinyPanel"
+        [autoSetText]="false"
         [openActions]="'click'">
     Create Character
 </button>

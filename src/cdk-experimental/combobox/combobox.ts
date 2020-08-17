@@ -173,6 +173,7 @@ export class CdkCombobox<T = unknown> implements OnDestroy, AfterContentInit {
       this.opened.next();
       this._overlayRef = this._overlayRef || this._overlay.create(this._getOverlayConfig());
       this._overlayRef.attach(this._getPanelContent());
+      console.log(this._isTextTrigger());
       if (!this._isTextTrigger()) {
         this._panel?.focusContent();
       }
