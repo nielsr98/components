@@ -10,6 +10,19 @@
 
 <button (click)="disableForm()">Disable Form</button>
 <br>
+<button (click)="enableForm()">Enable Form</button>
+<br>
 <button (click)="toggleMultiple()">Toggle Multiple</button>
 <br>
 <button (click)="toggleActiveDescendant()">Toggle Active Descendant</button>
+
+<br> <br>
+
+<ul cdkListbox class="filter-chip-listbox"
+    [multiple]="true"
+    [useActiveDescendant]="false">
+  <li cdkOption id="filter-option-1" class="chip-option">Filter 1</li>
+  <li cdkOption class="chip-option">Filter 2</li>
+  <li cdkOption class="chip-option">Filter 3</li>
+  <li cdkOption class="chip-option">Filter 4</li>
+</ul>

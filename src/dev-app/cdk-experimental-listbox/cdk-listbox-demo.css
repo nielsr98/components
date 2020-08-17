@@ -12,3 +12,31 @@
 .demo-listbox .cdk-option-selected {
   background: cornflowerblue;
 }
+
+.filter-chip-listbox {
+  list-style-type: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.chip-option {
+  height: 20px;
+  width: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+
+}
+
+.filter-chip-listbox .cdk-option-active {
+  background: lightgrey;
+}
+
+.filter-chip-listbox .cdk-option-selected {
+  background: cornflowerblue;
+}
+
+#filter-option-1 {
+  background: yellow;
+}
