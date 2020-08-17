@@ -11,14 +11,19 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {CdkComboboxModule} from '@angular/cdk-experimental/combobox';
 import {CdkComboboxDemo} from './cdk-combobox-demo';
-import {PanelContent} from './panel-content';
+import {CdkListboxModule} from "@angular/cdk-experimental/listbox";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CdkComboboxModule,
     CommonModule,
     RouterModule.forChild([{path: '', component: CdkComboboxDemo}]),
+    CdkListboxModule,
+    MatCheckboxModule,
+    FormsModule
   ],
-  declarations: [CdkComboboxDemo, PanelContent],
+  declarations: [CdkComboboxDemo],
 })
 export class CdkComboboxDemoModule {}
