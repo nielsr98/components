@@ -15,11 +15,15 @@ import {FormControl} from '@angular/forms';
 })
 export class CdkListboxDemo {
   multiSelectable = false;
-  activeDescendant = true;
+  activeDescendant = false;
   formControl = new FormControl();
 
   disableForm() {
     this.formControl.disable();
+  }
+
+  enableForm() {
+    this.formControl.enable();
   }
 
   toggleMultiple() {

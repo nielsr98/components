@@ -23,10 +23,21 @@
 
 .chip-option {
   height: 20px;
-  width: 50px;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 20px;
 
+  padding: 10px;
+  margin: 10px;
+
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chip-option:focus {
+  outline: none;
 }
 
 .filter-chip-listbox .cdk-option-active {
@@ -35,8 +46,4 @@
 
 .filter-chip-listbox .cdk-option-selected {
   background: cornflowerblue;
-}
-
-#filter-option-1 {
-  background: yellow;
 }
