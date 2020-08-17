@@ -39,13 +39,13 @@ export class CdkComboboxPanel<T = unknown> {
   // TODO: instead of using a focus function, potentially use cdk/a11y focus trapping
   focusContent() {
     // TODO: Use an injected document here
-    console.log('about to focus panel content ' + this.contentId);
+    console.log('focusing panel content ' + this.contentId);
     document.getElementById(this.contentId)?.focus();
   }
 
   /** Registers the content's id and the content type with the panel. */
   _registerContent(contentId: string, contentType: AriaHasPopupValue) {
-    if (this.contentType === 'dialog') {
+    if (this.contentType && this.contentType !== contentType) {
       return;
     }
 

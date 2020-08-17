@@ -13,3 +13,96 @@
 .demo-listbox .cdk-option-selected {
     background: cornflowerblue;
 }
+
+.google-wrapper {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#google-logo {
+    width: 250px;
+}
+
+#search-bar {
+    width: 500px;
+    height: 40px;
+    background: rgb(300, 300, 300);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 20px;
+}
+
+#search-bar:hover {
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.25);
+    border: none;
+}
+
+#search-bar:focus {
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.25);
+    border: none;
+    outline: none;
+}
+
+#search-bar.opened {
+    box-shadow: none;
+    outline: none;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 20px 20px 0px 0px;
+}
+
+#search-combobox {
+    margin-left: 35px;
+    width: 90%;
+    height: 90%;
+    border: none;
+    background: transparent;
+}
+
+#search-combobox:focus {
+    outline: none;
+}
+
+#search-listbox {
+    list-style-type: none;
+    cursor: default;
+    background: rgb(300, 300, 300);
+    width: 500px;
+    margin-left: -36px;
+    margin-top: 2px;
+    padding: 10px 0px 15px 0px;
+
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 0px 0px 20px 20px;
+}
+
+#search-listbox .cdk-option-active {
+    background: lightgrey;
+}
+
+#search-listbox .cdk-option-selected {
+    background: cornflowerblue;
+}
+
+.search-options {
+    width: 98%;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.search-options:hover {
+    background: lightgrey;
+}
+
+.search-options:focus {
+    outline: none;
+}
+
+#search-icon {
+    position: absolute;
+    margin-top: 9px;
+    margin-left: 9px;
+    color: rgb(150, 150, 150);
+}

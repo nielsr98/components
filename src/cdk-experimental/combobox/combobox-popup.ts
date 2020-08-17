@@ -53,6 +53,7 @@ export class CdkComboboxPopup<T = unknown> implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('initializing popup');
     this.registerWithPanel();
   }
 

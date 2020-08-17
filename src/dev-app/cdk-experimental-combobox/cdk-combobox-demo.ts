@@ -18,12 +18,16 @@ import {CdkListbox, ListboxSelectionChangeEvent} from "@angular/cdk-experimental
 export class CdkComboboxDemo {
   @ViewChild('guardianListbox', {static: true}) private readonly _guardianListbox: CdkListbox<string>;
   @ViewChild('fruitCombobox', {static: true}) private readonly _fruitCombobox: CdkCombobox<string>;
-  @ViewChild('fruitInput') input: ElementRef<HTMLInputElement>;
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('destinyCombobox', {static: true}) private readonly _destinyCombobox: CdkCombobox<string>;
   @ViewChild('destinyButton') destinyButton: ElementRef<HTMLButtonElement>;
 
+  @ViewChild('searchCombobox', {static: true}) private readonly _searchCombobox: CdkCombobox<string>;
+  @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
+
   readonly inputValue = new Subject<string>();
-  readonly countryValue = new Subject<string>()
+  readonly countryValue = new Subject<string>();
+  readonly searchValue = new Subject<string>();
 
   possibleFruit = [
     'apple',
@@ -44,6 +48,16 @@ export class CdkComboboxDemo {
     'South Korea'
   ];
 
+  possibleQueries = [
+      'Angular',
+      'Google',
+      'Combobox',
+      'Listbox',
+      'Pokemon',
+      'United States',
+      'Food'
+  ]
+
   arcChecked = false;
   solarChecked = false;
   voidChecked = false;
@@ -53,8 +67,13 @@ export class CdkComboboxDemo {
 
   ngAfterContentInit() {
     this._fruitCombobox.panelValueChanged.subscribe((event: string) => {
-      this.input.nativeElement.value = event.toString();
+      this.fruitInput.nativeElement.value = event.toString();
       this.inputValue.next(event.toString());
+    });
+
+    this._searchCombobox.panelValueChanged.subscribe((event: string) => {
+      this.searchInput.nativeElement.value = event.toString();
+      this.searchValue.next(event.toString());
     });
 
     this._destinyCombobox.panelValueChanged.subscribe((event: string) => {
@@ -67,6 +86,17 @@ export class CdkComboboxDemo {
     let filtered: string[] = this.possibleFruit;
     if (value !== null && value.length > 0) {
       filtered = this.possibleFruit.filter(word => word.includes(value));
+    }
+
+    return filtered;
+  }
+
+  getResult(value: string | null): string[] {
+    let filtered: string[] = this.possibleQueries;
+    if (value !== null && value.length > 0) {
+      filtered = this.possibleQueries.filter(
+          word => word.toLowerCase().startsWith(value.toLowerCase())
+      );
     }
 
     return filtered;

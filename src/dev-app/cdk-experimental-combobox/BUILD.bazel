@@ -13,6 +13,7 @@ ng_module(
         "//src/cdk-experimental/combobox",
         "//src/cdk-experimental/listbox",
         "//src/material/checkbox",
+        "//src/material/icon",
         "@npm//@angular/router",
         "@npm//@angular/forms",
     ],

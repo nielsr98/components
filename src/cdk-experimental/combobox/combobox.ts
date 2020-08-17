@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+
 export type OpenAction = 'focus' | 'click' | 'downKey' | 'toggle';
 export type OpenActionInput = OpenAction | OpenAction[] | string | null | undefined;
 
@@ -30,7 +31,7 @@ import {
 } from '@angular/cdk/overlay';
 import {Directionality} from '@angular/cdk/bidi';
 import {BooleanInput, coerceBooleanProperty, coerceArray} from '@angular/cdk/coercion';
-import {DOWN_ARROW, ESCAPE} from '@angular/cdk/keycodes';
+import {DOWN_ARROW, ENTER, ESCAPE, TAB} from '@angular/cdk/keycodes';
 
 const allowedOpenActions = ['focus', 'click', 'downKey', 'toggle'];
 
@@ -72,7 +73,7 @@ export class CdkCombobox<T = unknown> implements OnDestroy, AfterContentInit {
   set openActions(action: OpenAction[]) {
     this._openActions = this._coerceOpenActionProperty(action);
   }
-  private _openActions: OpenAction[] = ['click'];
+  private _openActions: OpenAction[] = ['toggle'];
 
   @Input()
   get autoSetText(): boolean { return this._autoSetText; }
@@ -125,10 +126,22 @@ export class CdkCombobox<T = unknown> implements OnDestroy, AfterContentInit {
       } else if (this._openActions.indexOf('downKey') !== -1) {
         this.open();
       }
+    } else if (keyCode === ENTER) {
+      if (this._openActions.indexOf('toggle') !== -1) {
+        this.toggle();
+      } else if (this._openActions.indexOf('click') !== -1) {
+        this.open();
+      }
 
     } else if (keyCode === ESCAPE) {
       event.preventDefault();
       this.close();
+    } else if (keyCode === TAB) {
+      if (this.contentType === 'listbox') {
+        this.close();
+      } else {
+        this._panel?.focusContent();
+      }
     }
   }
 
@@ -173,7 +186,6 @@ export class CdkCombobox<T = unknown> implements OnDestroy, AfterContentInit {
       this.opened.next();
       this._overlayRef = this._overlayRef || this._overlay.create(this._getOverlayConfig());
       this._overlayRef.attach(this._getPanelContent());
-      console.log(this._isTextTrigger());
       if (!this._isTextTrigger()) {
         this._panel?.focusContent();
       }

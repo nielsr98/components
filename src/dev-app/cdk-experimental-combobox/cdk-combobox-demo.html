@@ -1,3 +1,22 @@
+<div class="google-wrapper">
+    <img id="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+    <br>
+    <div id="search-bar" [ngClass]="{'opened': searchCombobox.isOpen()}">
+        <mat-icon id="search-icon">search</mat-icon>
+        <input #searchInput id="search-combobox" cdkCombobox #searchCombobox='cdkCombobox'
+               (input)="searchValue.next(searchInput.value)"
+               [cdkComboboxTriggerFor]="searchPanel"
+               [openActions]="'downKey click'">
+    </div>
+    <ng-template cdkComboboxPanel  #searchPanel="cdkComboboxPanel">
+        <ul cdkListbox id="search-listbox" [parentPanel]="searchPanel">
+            <li cdkOption class="search-options" *ngFor="let query of getResult(searchValue | async)" [value]="query">{{query}}</li>
+        </ul>
+    </ng-template>
+</div>
+
+<br> <br> <br> <br> <br> <br>
+
 Combobox with input dialog (toggles on click)
 <br>
 <button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="panel" [openActions]="'toggle'">
@@ -5,7 +24,7 @@ Combobox with input dialog (toggles on click)
 </button>
 
 <ng-template cdkComboboxPanel #panel="cdkComboboxPanel">
-    <div cdkComboboxPopup [parentPanel]="panel">
+    <div cdkComboboxPopup [parentPanel]="panel" [firstFocus]="input">
         <input #input>
         <button (click)="panel.closePanel(input.value)">Apply</button>
     </div>
@@ -15,7 +34,7 @@ Combobox with input dialog (toggles on click)
 
 Combobox with listbox (opens on focus)
 <br>
-<button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="listboxPanel" [openActions]="'focus'">
+<button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="listboxPanel" [openActions]="'toggle'">
     Choose Car
 </button>
 
@@ -30,8 +49,6 @@ Combobox with listbox (opens on focus)
 
 <br> <br> <br>
 
-Input combobox with filtered options (opens on down arrow key or click)
-<br>
 <input #fruitInput cdkCombobox #fruitCombobox='cdkCombobox'
        (input)="inputValue.next(fruitInput.value)"
        [cdkComboboxTriggerFor]="fruitPanel"

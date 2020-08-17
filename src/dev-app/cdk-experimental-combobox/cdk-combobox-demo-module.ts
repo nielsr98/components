@@ -14,6 +14,7 @@ import {CdkComboboxDemo} from './cdk-combobox-demo';
 import {CdkListboxModule} from "@angular/cdk-experimental/listbox";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     RouterModule.forChild([{path: '', component: CdkComboboxDemo}]),
     CdkListboxModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   declarations: [CdkComboboxDemo],
 })
