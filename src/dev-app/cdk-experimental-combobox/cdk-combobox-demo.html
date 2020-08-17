@@ -1,25 +1,94 @@
-Toggle Combobox!
+Combobox with input dialog (toggles on click)
 <br>
 <button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="panel" [openActions]="'toggle'">
     No Value
 </button>
 
 <ng-template cdkComboboxPanel #panel="cdkComboboxPanel">
-    <div cdkComboboxPopup [parentPanel]="panel" [firstFocus]="input">
+    <div cdkComboboxPopup [parentPanel]="panel">
         <input #input>
         <button (click)="panel.closePanel(input.value)">Apply</button>
     </div>
 </ng-template>
 
-<br>
-<br>
-<br>
+<br> <br> <br>
 
-<input cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="inputPanel" [openActions]="'toggle'">
+Combobox with listbox (opens on focus)
+<br>
+<button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="listboxPanel" [openActions]="'focus'">
+    Choose Car
+</button>
 
-<ng-template cdkComboboxPanel #inputPanel="cdkComboboxPanel">
-    <div cdkComboboxPopup [parentPanel]="inputPanel" [firstFocus]="inputTwo">
-        <input #inputTwo>
-        <button (click)="inputPanel.closePanel(inputTwo.value)">Apply</button>
+<ng-template cdkComboboxPanel #listboxPanel="cdkComboboxPanel">
+    <ul cdkListbox class="demo-listbox" [parentPanel]="listboxPanel">
+        <li cdkOption [value]="'Mercedes'">Mercedes</li>
+        <li cdkOption [value]="'BMW'">BMW</li>
+        <li cdkOption [value]="'Audi'">Audi</li>
+        <li cdkOption [value]="'Tesla'">Tesla</li>
+    </ul>
+</ng-template>
+
+<br> <br> <br>
+
+Input combobox with filtered options (opens on down arrow key or click)
+<br>
+<input #fruitInput cdkCombobox #fruitCombobox='cdkCombobox'
+       (input)="inputValue.next(fruitInput.value)"
+       [cdkComboboxTriggerFor]="fruitPanel"
+       [openActions]="'downKey click'">
+
+<ng-template cdkComboboxPanel #fruitPanel="cdkComboboxPanel">
+    <ul cdkListbox class="demo-listbox" [parentPanel]="fruitPanel">
+        <li cdkOption *ngFor="let fruit of getFruit(inputValue | async)" [value]="fruit">{{fruit}}</li>
+    </ul>
+</ng-template>
+
+<br> <br> <br>
+
+Combobox with listbox and filter input (opens on click)
+<br>
+<button cdkCombobox class="example-combobox" [cdkComboboxTriggerFor]="countryPanel" [openActions]="'click'">
+    Choose Country
+</button>
+
+<ng-template cdkComboboxPanel #countryPanel="cdkComboboxPanel">
+    <div cdkComboboxPopup [parentPanel]="countryPanel">
+        Filter
+        <input #countryInput class="demo-input" (input)="inputValue.next(countryInput.value)">
+        <br>
+        <ul cdkListbox class="demo-listbox" [parentPanel]="countryPanel">
+            <li cdkOption *ngFor="let country of getCountries(inputValue | async)" [value]="country">{{country}}</li>
+        </ul>
+    </div>
+
+</ng-template>
+
+<br> <br> <br>
+
+Combobox with dialog (opens on click)
+<br> <br>
+<div *ngIf="character.length !== 0">{{character}}</div>
+<button #destinyButton cdkCombobox
+        #destinyCombobox="cdkCombobox"
+        class="example-combobox"
+        [cdkComboboxTriggerFor]="destinyPanel"
+        [openActions]="'click'">
+    Create Character
+</button>
+
+<ng-template cdkComboboxPanel #destinyPanel="cdkComboboxPanel">
+    <div cdkComboboxPopup [parentPanel]="countryPanel">
+        <ul cdkListbox class="demo-listbox"
+            #guardianListbox="cdkListbox"
+            (selectionChange)="updateGuardian(guardianListbox.getSelectedValues())">
+            <li cdkOption [value]="'Hunter'">Hunter</li>
+            <li cdkOption [value]="'Titan'">Titan</li>
+            <li cdkOption [value]="'Warlock'">Warlock</li>
+        </ul>
+        <mat-checkbox [(ngModel)]="arcChecked" (ngModelChange)="elementChecked('arc')">Arc</mat-checkbox><br>
+        <mat-checkbox [(ngModel)]="solarChecked" (ngModelChange)="elementChecked('solar')">Solar</mat-checkbox><br>
+        <mat-checkbox [(ngModel)]="voidChecked" (ngModelChange)="elementChecked('void')">Void</mat-checkbox><br>
+        <br>
+        <button (click)="destinyPanel.closePanel(getDestinyData())">Apply</button>
     </div>
 </ng-template>
